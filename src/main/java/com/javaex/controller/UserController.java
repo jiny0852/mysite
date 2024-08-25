@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -98,24 +97,37 @@ public class UserController {
 	}
 	
 	
-	/* editForm */
-	@RequestMapping ( value="/user/editform", method= {RequestMethod.GET, RequestMethod.POST} )
-	public String editform ( Model model, HttpSession session ) {
+	/* modifyForm */
+	@RequestMapping ( value="/user/modifyform", method= {RequestMethod.GET, RequestMethod.POST} )
+	public String modifyform ( Model model, HttpSession session ) {
 		
-		System.out.println("userController.editForm()");
+		System.out.println("userController.modifyform()");
+		
+		System.out.println((UserVo)session.getAttribute("authUser")); 
+		
+		UserVo userVo = userService.exeGetUserOne( (UserVo)session.getAttribute("authUser") );
+		
+		System.out.println(userVo);
+		
+		model.addAttribute(userVo);
 		
 		
 		return "/user/modifyForm";
 	}
-	
-	/* editForm */
-	@RequestMapping ( value="/user/editform", method= {RequestMethod.GET, RequestMethod.POST} )
-	public String editform ( Model model, HttpSession session ) {
+
+
+	/* modify */
+	@RequestMapping ( value="/user/modify", method= {RequestMethod.GET, RequestMethod.POST} )
+	public String modify ( @ModelAttribute UserVo userVo, HttpSession session ) {
 		
-		System.out.println("userController.editForm()");
+		System.out.println("userController.modify()");
+		
+		UserVo authUser = userService.exeUpdateUser(userVo);
+		
+		session.setAttribute("authUser", authUser); 
 		
 		
-		return "/user/modifyForm";
+		return "redirect:/main";
 	}
 	
 	

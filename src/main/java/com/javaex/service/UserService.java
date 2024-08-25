@@ -39,6 +39,25 @@ public class UserService {
 		
 	}
 	
+	public UserVo exeGetUserOne ( UserVo userVo ) {
+		
+		System.out.println("UserService.exeGetUserOne()");
+		
+		UserVo authUser = userDao.getUserOne(userVo);
+		
+		
+		return authUser;
+	}
+	
+	public UserVo exeUpdateUser ( UserVo userVo ) {
+		
+		System.out.println("UserService.exeUpdateUser()");
+		
+		UserVo authUser = userDao.updateUser(userVo);
+		
+		return authUser;
+		
+	}
 	
 	
 

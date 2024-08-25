@@ -42,5 +42,35 @@ public class UserDao {
 		return authUser;
 		
 	}
+	
+	
+	public UserVo getUserOne ( UserVo userVo ) {
+		
+		System.out.println("UserDao.getUserOne()");
+		
+		UserVo authUser = sqlSession.selectOne("user.selectByNoName", userVo);
+		
+		System.out.println("getUserOne.User : " + authUser);
+		
+		return authUser;
+	}
+	
+	public UserVo updateUser ( UserVo userVo ) {
+		
+		System.out.println("UserDao.updateUser()");
+		
+		int count = sqlSession.update("user.update", userVo);
+		
+		if (count == 1) { return userVo;  }
+		else { return null; }
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 
 }
