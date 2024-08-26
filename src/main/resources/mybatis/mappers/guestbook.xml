@@ -7,69 +7,83 @@
 
 <!-- 쿼리문작성 -->
 
-	<!-- 회원 가입 UserJoin -->
-	<insert id="insert" parameterType="com.javaex.vo.UserVo">
+
+	<!-- guestList 전체 가져오기 -->
+	<select id="selectList" resultType="com.javaex.vo.GuestbookVo">
+
+		<![CDATA[
+
+			select 	no, 
+		    	    name, 
+		            password, 
+		            content,
+		            reg_date regDate
+		    from guestbook 
+
+		]]>
+
+	</select>
+	
+	<!--  
+	<resultMap id="resultMapGuestbookVo" type="com.javaex.vo.GuestbookVo">
+
+		<result column="no" property="no" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="content" property="content" />
+		<result column="reg_date" property="regDate" />
+
+	</resultMap>
+	<select id="selectList" resultMap="resultMapGuestbookVo">
+
+		<![CDATA[
+
+			select 	no, 
+		    	    name, 
+		            password, 
+		            content,
+		            reg_date
+		    from guestbook 
+
+		]]>
+
+	</select>
+	-->
+	<!-- /////////////////////guestList 전체 가져오기 -->
+
+	
+	
+	<!-- guestbook insert 추가 -->
+	
+	<insert id="insert" parameterType="com.javaex.vo.GuestbookVo">
 	
 		<![CDATA[
 
-			insert into Users
-			values ( null, #{id}, #{password}, #{name}, #{gender} )
+			insert into guestbook
+			values ( null, #{name}, #{password}, #{content}, now() )
 
 		]]>
 
 	</insert>
 	
 	
-	<!-- 로그인(회원) 조회 login -->
-	<select id="selectByIdPw" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
-
+	<!-- ///////////////guestbook insert 추가 -->
+	
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="com.javaex.vo.GuestbookVo">
+	
 		<![CDATA[
 
-			select 	no,
-				    name 
-			from users
-			where id = #{id}
+			delete from guestbook
+			where no = #{no}
 			and password = #{password}
 
 		]]>
 
-	</select>
-	
-	
-	<!-- 정보수정(회원) 조회 modify -->
-	<select id="selectByNoName" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+	</delete>
 
-		<![CDATA[
 
-			select 	no,
-					id,
-					password,
-				    name,
-				    gender 
-			from users
-			where no = #{no}
-			and name = #{name}
-
-		]]>
-
-	</select>
-	
-	
-	
-	<!-- 수정 update -->
-	<update id="update" parameterType="com.javaex.vo.UserVo">
-	
-		<![CDATA[
-
-			update users 
-			set password = #{password}, 
-				name = #{name}, 
-				gender = #{gender} 
-	 		where no = #{no}
-
-		]]>
-
-	</update>
 
 
 

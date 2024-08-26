@@ -44,6 +44,8 @@ create table users (
     gender  	 varchar(10)
 );
 
+
+
 -- 조회
 select * from users;
 
@@ -112,24 +114,26 @@ and password = '333'
 ################## guestbook_db 데이터 ##################
 
 
-use guestbook_db;
+use web_db;
 
 drop table guestbook;
 
 create table guestbook (
 	no  	 	 integer 		  primary key     auto_increment,
-    id 			 varchar(20)	  not null        ,
+    name		 varchar(20)	  not null,
     password	 varchar(20) 	  not null,
     content 	 text,
     reg_date     datetime
 );
 
+ALTER TABLE guestbook
+RENAME COLUMN id TO name;
 
 -- 조회
 select * from guestbook;
 
 select  no,
-		id,
+		name,
 		password,
         content,
         reg_date
@@ -170,11 +174,87 @@ where id = 'ccc'
 ;
 
 
--- 삭제
+-- 삭제###########
 delete from guestbook
 where id = 'ccc'
 and password = '666'
 ;
+
+
+
+
+#######################################################
+#################### board_db 데이터 ####################
+
+use web_db;
+
+drop table board;
+
+create table board (
+	no  	 	 integer 		  primary key     auto_increment,
+    title 		 varchar(20)	  not null,
+    content 	 text,
+    hit			 integer          default 0,
+    reg_date     datetime		  not null,
+    user_no 	 integer          not null,
+    
+	constraint board_fk foreign key (user_no) 
+    references Users(no)
+);
+
+
+-- 조회
+select * from board;
+
+select  no,
+		title,
+		content,
+        hit,
+        reg_date,
+        user_no
+from board
+;
+
+
+-- 등록 ################
+insert into board
+values( null, 'aaa', '111', null, now(), 1 )
+;
+
+insert into guestbook
+values(null, 'bbb', '222', '한노아', now() )
+;
+
+insert into guestbook
+values(null, 'ccc', '333', '채밤비', now() )
+;
+
+insert into guestbook
+values(null, 'ddd', '444', '도은호', now() )
+;
+
+insert into guestbook
+values(null, 'eee', '555', '유하민', now() )
+;
+
+
+
+
+-- 수정#######
+update guestbook
+set password = '666',
+	name = '채봉구',
+	gender = 'female'
+where id = 'ccc'
+;
+
+
+-- 삭제 ###############
+delete from guestbook
+where id = 'ccc'
+and password = '666'
+;
+
 
 
 

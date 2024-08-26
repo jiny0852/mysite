@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
@@ -28,7 +29,7 @@ public class GuestbookController {
 		//메소드를 이용해서 저장한다
 		List<GuestbookVo> guestbookList = guestbookService.exeGetList();
 		
-		System.out.println(guestbookList);
+		//System.out.println(guestbookList);
 		
 		model.addAttribute("guestbookList", guestbookList);
 		
@@ -37,23 +38,59 @@ public class GuestbookController {
 	}
 	
 	
-	/* 등록 */
-	@RequestMapping ( value="/insert", method={RequestMethod.GET, RequestMethod.POST}  )
+	/* guestbook 등록 */
+	@RequestMapping ( value="/guestbook/insert", method={RequestMethod.GET, RequestMethod.POST}  )
 	public String insert ( @ModelAttribute GuestbookVo guestbookVo ) {
 		
 		System.out.println("guestbookController.insert()");
 		
-		System.out.println(guestbookVo);
-
+		GuestbookVo addGuestbook = guestbookService.exeInsert(guestbookVo);
 		
-		//메소드를 이용해서 저장한다
-		int count = 0;//guestbookService.exeInsert(guestbookVo);
-		System.out.println(count);
+		//System.out.println(addGuestbook);
 		
-		//리스트로 리다이렉트
-		return "redirect:/addList";
+		return "redirect:/guestbook/list";
 		
 	}
+	
+	
+	/* 삭제폼 */
+	@RequestMapping ( value="/guestbook/deleteform", method={RequestMethod.GET, RequestMethod.POST}  )
+	public String deleteForm( @RequestParam(value="no") int no ) {
+		
+		System.out.println("guestbookController.deleteForm()");
+		
+		//System.out.println(no);
+		
+		return "/guestbook/deleteForm";
+		
+	}
+	
+	
+	/* 삭제 */
+	@RequestMapping ( value="/guestbook/delete", method= { RequestMethod.GET, RequestMethod.POST } )
+	public String delete ( @ModelAttribute GuestbookVo guestbookVo ) {
+			
+			/*@RequestParam(value="no") int no , 
+						   @RequestParam(value="password") String password  ) {*/
+		
+		System.out.println("guestbookController.delete()");
+		
+		GuestbookVo deleteGuestbookVo = guestbookService.exeDelete(guestbookVo);
+		
+		//System.out.println(deleteGuestbookVo);
+
+		
+		return "redirect:/guestbook/list";
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

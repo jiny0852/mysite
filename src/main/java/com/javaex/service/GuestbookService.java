@@ -19,10 +19,30 @@ public class GuestbookService {
 		
 		System.out.println("GuestbookService.exeGetList()");
 		
-		return null;
+		List<GuestbookVo> guestList = guestbookDao.getGuestbookList();
+		
+		return guestList;
 		
 	}
 	
+	public GuestbookVo exeInsert( GuestbookVo guestbookVo ) {
+		
+		System.out.println("GuestbokService.exeInsret()");
+		
+		GuestbookVo addGuestbook = guestbookDao.insertGuestbook(guestbookVo);
+		
+		return addGuestbook;
+	}
+	
+	
+	public GuestbookVo exeDelete( GuestbookVo guestbookVo ) {
+		
+		System.out.println("GuestbokService.exeDelete()");
+		
+		GuestbookVo deleteGuestbook = guestbookDao.deleteGuestbook(guestbookVo);
+		
+		return deleteGuestbook;
+	}
 	
 	
 

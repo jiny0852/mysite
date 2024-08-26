@@ -42,10 +42,14 @@
 						</ul>
 					</div>
 				</div>
+				
+				
+				
+				
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="insert" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -58,7 +62,7 @@
 									<th><label class="form-text" for="input-uname">이름</label></td>
 									<td><input id="input-uname" type="text" name="name"></td>
 									<th><label class="form-text" for="input-pass">패스워드</label></td>
-									<td><input id="input-pass"type="password" name="pass"></td>
+									<td><input id="input-pass"type="password" name="password"></td>
 								</tr>
 								<tr>
 									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -70,10 +74,40 @@
 							
 						</table>
 						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
+						<!-- <input type="hidden" name="action" value="add"> -->
 						
-					</form>	
-					
+					</form>
+
+
+
+
+
+
+					<!-- guestbook List 출력 -->
+
+					<c:forEach items="${requestScope.guestbookList}" var="guestbookVo">
+
+						<table class="guestRead">
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width: 40%;">
+								<col style="width: 40%;">
+								<col style="width: 10%;">
+							</colgroup>
+							<tr>
+								<td>${guestbookVo.no}</td>
+								<td>${guestbookVo.name}</td>
+								<td>${guestbookVo.regDate}</td>
+								<td><a href="/mysite/guestbook/deleteform?no=${guestbookVo.no}">[삭제]</a></td>
+							</tr>
+							<tr>
+								<td colspan=4 class="text-left">${guestbookVo.content}</td>
+							</tr>
+						</table>
+
+					</c:forEach>
+
+
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -110,6 +144,7 @@
 							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
 						</tr>
 					</table>	
+					
 					<!-- //guestRead -->
 					
 				</div>
