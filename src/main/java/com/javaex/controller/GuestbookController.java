@@ -55,7 +55,7 @@ public class GuestbookController {
 	
 	/* 삭제폼 */
 	@RequestMapping ( value="/guestbook/deleteform", method={RequestMethod.GET, RequestMethod.POST}  )
-	public String deleteForm( @RequestParam(value="no") int no ) {
+	public String deleteForm( ) { //@RequestParam(value="no") int no ) {
 		
 		System.out.println("guestbookController.deleteForm()");
 		

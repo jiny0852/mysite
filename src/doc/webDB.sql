@@ -215,11 +215,44 @@ select  no,
 from board
 ;
 
+select  b.no,
+		b.title,
+		b.content,
+        b.hit,
+        b.reg_date,
+        b.user_no,
+        u.name
+from board b, users u
+where b.user_no = u.no
+;
+
+
+
+
+insert into board ( title, content, reg_date, user_no )
+values( 'bbb', 'bbb', now(), 1 )
+;
+
+
+delete from board
+where no = '2'
+and user_no = '1'
+;
+
+
+
+
+
+
 
 -- 등록 ################
 insert into board
 values( null, 'aaa', '111', null, now(), 1 )
 ;
+
+
+
+
 
 insert into guestbook
 values(null, 'bbb', '222', '한노아', now() )
@@ -250,11 +283,10 @@ where id = 'ccc'
 
 
 -- 삭제 ###############
-delete from guestbook
-where id = 'ccc'
-and password = '666'
+delete from board
+where id = 'bbb'
+and password = 'bbb'
 ;
-
 
 
 
