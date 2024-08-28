@@ -29,7 +29,7 @@ public class BoardDao {
 		
 		System.out.println("boardDao.getRead()");
 		
-		BoardVo boardVo = sqlSession.selectOne("board.selectRead");
+		BoardVo boardVo = sqlSession.selectOne("board.selectRead", no);
 		
 		return boardVo;
 	}

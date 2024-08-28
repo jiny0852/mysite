@@ -28,7 +28,7 @@
 	
 	
 	<!-- board Read 한페이지 가져오기 -->
-	<select id="selectRead" resultType="com.javaex.vo.BoardVo">
+	<select id="selectRead" parameterType="int" resultType="com.javaex.vo.BoardVo">
 
 		<![CDATA[
 

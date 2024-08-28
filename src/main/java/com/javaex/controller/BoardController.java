@@ -36,7 +36,7 @@ public class BoardController {
 		
 		
 		return "/board/list";
-				
+				                                    
 	}
 	
 	/* board read Page */
@@ -46,6 +46,8 @@ public class BoardController {
 		System.out.println("boardController.read()");
 		
 		BoardVo boardVo = boardService.exeGetReadOne(no);
+		
+		System.out.println(boardVo);
 		
 		model.addAttribute("boardVo", boardVo);		
 		

@@ -76,7 +76,13 @@
 										<td>${boardVo.userName}</td>
 										<td>${boardVo.hit}</td>
 										<td>${boardVo.regDate}</td>
-										<td><a href="">[삭제]</a></td>
+										
+										<!-- 로그인했을때 -->
+										<c:if test="${sessionScope.authUser.no == boardVo.userNo}">
+											<td><a href="">[삭제]</a></td>
+										</c:if>
+										
+										
 									</tr>
 								</tbody>
 
@@ -155,7 +161,12 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
+						
+						<!-- 로그인했을때 -->
+						<c:if test="${sessionScope.authUser != null}">
+							<a id="btn_write" href="">글쓰기</a>
+						</c:if>
+
 					
 					</div>
 					<!-- //list -->
