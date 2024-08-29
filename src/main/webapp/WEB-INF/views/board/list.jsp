@@ -164,7 +164,7 @@
 						
 						<!-- 로그인했을때 -->
 						<c:if test="${sessionScope.authUser != null}">
-							<a id="btn_write" href="">글쓰기</a>
+							<a id="btn_write" href="${pageContext.request.contextPath}/board/writeform">글쓰기</a>
 						</c:if>
 
 					

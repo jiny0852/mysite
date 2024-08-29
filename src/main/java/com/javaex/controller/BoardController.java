@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
-import com.javaex.vo.GuestbookVo;
+import com.javaex.vo.UserVo;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -55,6 +57,41 @@ public class BoardController {
 		return "/board/read";
 	}
 	
+	/* writeform */
+	@RequestMapping ( value="/board/writeform", method={RequestMethod.GET, RequestMethod.POST} )
+	public String writeform () {
+		
+		System.out.println("boardController.writeform()");
+		
+		return "/board/writeForm";
+	}
+	
+	/* write */
+	@RequestMapping ( value="/board/write", method={RequestMethod.GET, RequestMethod.POST} )
+	public String write ( @ModelAttribute BoardVo boardVo, HttpSession session ) {
+		
+		System.out.println("boardController.write()");
+		
+		//System.out.println((Integer)session.getAttribute("authUser"));
+		
+		//UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		BoardVo insertVo = boardVo;
+		//boardVo.setUserNo( authUser.getNo() );
+		//boardVo.setUserName( authUser.getName() );
+		
+		boardVo.setUserNo( (BoardVo)session.getAttribute("authUser").getNo() );
+		boardVo.setUserName( (BoardVo)session.getAttribute("authUser").getName() );
+		
+		System.out.println(boardVo);
+		
+		BoardVo returnVo = boardService.exeGetInsert(boardVo);
+		
+		
+		
+		return "redirect:/board/list";
+	}
+	  
 	
 	
 	

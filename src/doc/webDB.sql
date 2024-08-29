@@ -206,6 +206,7 @@ create table board (
 -- 조회
 select * from board;
 
+-- 리스트 뽑기
 select  no,
 		title,
 		content,
@@ -215,6 +216,7 @@ select  no,
 from board
 ;
 
+-- 내가 쓴글 리스트
 select  b.no,
 		b.title,
 		b.content,
@@ -224,6 +226,19 @@ select  b.no,
         u.name
 from board b, users u
 where b.user_no = u.no
+;
+
+-- 하나 글읽기
+select  b.no,
+		b.title,
+		b.content,
+        b.hit,
+        b.reg_date,
+        b.user_no,
+        u.name
+from board b, users u
+where b.user_no  = u.no
+and b.no  = 1
 ;
 
 

@@ -34,6 +34,18 @@ public class BoardDao {
 		return boardVo;
 	}
 
+	public BoardVo getInsert ( BoardVo boardVo ) {
+		
+		System.out.println("boardDao.getInsert()");
+		
+		int count = sqlSession.insert("board.insert", boardVo);		
+		
+		if (count == 1) {
+			return boardVo;
+		} else {
+			return null;
+		}
+	}
 	
 	
 	

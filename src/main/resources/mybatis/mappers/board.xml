@@ -40,11 +40,25 @@
 		            b.user_no userNo,
 		            u.name userName
 		    from board b, users u
-		    where b.no  = #{no}
+		    where b.user_no  = u.no
+		    and b.no  = #{no}
 
 		]]>
 
 	</select>
+	
+	
+	<!-- board Read 한페이지 가져오기 -->
+	<insert id="insert" parameterType="com.javaex.vo.BoardVo">
+	
+		<![CDATA[
+
+			insert into board 
+			values ( null, #{title}, #{content}, 1, now(), #{userNo}, #{userName} )
+
+		]]>
+
+	</insert>
 
 
 

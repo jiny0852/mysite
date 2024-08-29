@@ -36,6 +36,15 @@ public class BoardService {
 		
 		return boardVo;
 	}
+	
+	public BoardVo exeGetInsert ( BoardVo boardVo ) {
+		
+		System.out.println("boardService.exeGetInsert()");
+		
+		BoardVo insertVo = boardDao.getInsert(boardVo);
+		
+		return insertVo;
+	}
 
 	
 	
