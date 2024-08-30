@@ -93,6 +93,34 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	
+	/* modifyForm */
+	@RequestMapping ( value="/board/modifyform", method={RequestMethod.GET, RequestMethod.POST} )
+	public String modifyform ( @RequestParam(value="no") int no, Model model ) {
+		
+		System.out.println("boardController.modifyform()");
+		
+		BoardVo boardVo = boardService.exeGetReadOne(no);
+		
+		model.addAttribute("boardVo", boardVo);		
+		
+		return "/board/modifyForm";
+	}
+	
+	
+	/* modify */
+	@RequestMapping ( value="/board/modify", method={RequestMethod.GET, RequestMethod.POST} )
+	public String modify ( @ModelAttribute BoardVo boardVo ) {
+		
+		System.out.println("boardController.modify()");
+		
+		BoardVo updateVo = boardService.exeUpdate(boardVo);		
+		
+		System.out.println(updateVo);
+		
+		return "redirect:/board/list";
+	}
 	  
 	
 	

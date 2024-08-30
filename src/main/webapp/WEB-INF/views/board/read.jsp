@@ -94,8 +94,14 @@
 								</span>
 							</div>
 							
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm">수정</a>
+							<!-- 로그인했을때 -->
+							<c:if test="${sessionScope.authUser.no == boardVo.userNo}">
+								<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?no=${boardVo.no}">수정</a>
+								
+							</c:if>
 							<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
+							
+
 							
 						</form>
 						<!-- //form -->

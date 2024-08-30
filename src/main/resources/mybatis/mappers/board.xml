@@ -54,11 +54,27 @@
 		<![CDATA[
 
 			insert into board 
-			values ( null, #{title}, #{content}, 1, now(), #{userNo}, #{userName} )
+			values ( null, #{title}, #{content}, 1, now(), #{userNo} )
 
 		]]>
 
 	</insert>
+	
+	
+	<!-- 페이지 수정하기 -->
+	<update id="update" parameterType="com.javaex.vo.UserVo">
+	
+		<![CDATA[
+
+			update board 
+			set password = #{password}, 
+				name = #{name}, 
+				gender = #{gender} 
+	 		where no = #{no}
+
+		]]>
+
+	</update>
 
 
 

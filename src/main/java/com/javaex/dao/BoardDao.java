@@ -47,6 +47,21 @@ public class BoardDao {
 		}
 	}
 	
+	public BoardVo getUpdate ( BoardVo boardVo ) {
+		
+		System.out.println("boardDao.getUpdate()");
+		
+		int count = sqlSession.update("board.update", boardVo);	
+		
+		
+		if (count == 1) {
+			return boardVo;
+		} else {
+			return null;
+		}
+		
+	}
+	
 	
 	
 	

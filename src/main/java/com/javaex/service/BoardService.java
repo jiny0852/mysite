@@ -45,6 +45,15 @@ public class BoardService {
 		
 		return insertVo;
 	}
+	
+	public BoardVo exeUpdate ( BoardVo boardVo ) {
+		
+		System.out.println("boardService.exeUpdate()");
+		
+		BoardVo updateVo = boardDao.getUpdate(boardVo);
+		
+		return updateVo;
+	}
 
 	
 	
