@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -67,6 +67,8 @@
 							<div class="form-group">
 								<textarea id="txt-content" name="content"></textarea>
 							</div>
+							
+							<input type="hidden" name="userNo" value="${sessionScope.authUser.no}">
 							
 							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
 							<button id="btn_add" type="submit" >등록</button>

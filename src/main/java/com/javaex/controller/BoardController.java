@@ -72,6 +72,8 @@ public class BoardController {
 		
 		System.out.println("boardController.write()");
 		
+		System.out.println(boardVo);
+		
 		//System.out.println((Integer)session.getAttribute("authUser"));
 		
 		//UserVo authUser = (UserVo)session.getAttribute("authUser");
@@ -80,10 +82,10 @@ public class BoardController {
 		//boardVo.setUserNo( authUser.getNo() );
 		//boardVo.setUserName( authUser.getName() );
 		
-		boardVo.setUserNo( (BoardVo)session.getAttribute("authUser").getNo() );
-		boardVo.setUserName( (BoardVo)session.getAttribute("authUser").getName() );
+		//boardVo.setUserNo( (BoardVo)session.getAttribute("authUser").getNo() );
+		//boardVo.setUserName( (BoardVo)session.getAttribute("authUser").getName() );
 		
-		System.out.println(boardVo);
+		
 		
 		BoardVo returnVo = boardService.exeGetInsert(boardVo);
 		

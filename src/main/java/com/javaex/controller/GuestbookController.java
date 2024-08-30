@@ -14,6 +14,7 @@ import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
+@RequestMapping ( value="/guestbook")
 public class GuestbookController {
 	
 	@Autowired
@@ -21,7 +22,7 @@ public class GuestbookController {
 	
 	
 	/* 리스트-등록폼 */
-	@RequestMapping ( value="/guestbook/list", method={RequestMethod.GET, RequestMethod.POST}  )
+	@RequestMapping ( value="/list", method={RequestMethod.GET, RequestMethod.POST}  )
 	public String list ( Model model ) {
 		
 		System.out.println("guestbookController.list()");
@@ -39,7 +40,7 @@ public class GuestbookController {
 	
 	
 	/* guestbook 등록 */
-	@RequestMapping ( value="/guestbook/insert", method={RequestMethod.GET, RequestMethod.POST}  )
+	@RequestMapping ( value="/insert", method={RequestMethod.GET, RequestMethod.POST}  )
 	public String insert ( @ModelAttribute GuestbookVo guestbookVo ) {
 		
 		System.out.println("guestbookController.insert()");
@@ -54,7 +55,7 @@ public class GuestbookController {
 	
 	
 	/* 삭제폼 */
-	@RequestMapping ( value="/guestbook/deleteform", method={RequestMethod.GET, RequestMethod.POST}  )
+	@RequestMapping ( value="/deleteform", method={RequestMethod.GET, RequestMethod.POST}  )
 	public String deleteForm( ) { //@RequestParam(value="no") int no ) {
 		
 		System.out.println("guestbookController.deleteForm()");
@@ -67,7 +68,7 @@ public class GuestbookController {
 	
 	
 	/* 삭제 */
-	@RequestMapping ( value="/guestbook/delete", method= { RequestMethod.GET, RequestMethod.POST } )
+	@RequestMapping ( value="/delete", method= { RequestMethod.GET, RequestMethod.POST } )
 	public String delete ( @ModelAttribute GuestbookVo guestbookVo ) {
 			
 			/*@RequestParam(value="no") int no , 
@@ -84,7 +85,18 @@ public class GuestbookController {
 	} 
 	
 	
-	
+	// ########################################################################
+	/* ajax index */
+	@RequestMapping ( value="/ajaxindex", method={RequestMethod.GET, RequestMethod.POST}  )
+	public String ajaxindex (  ) {
+		
+		System.out.println("guestbookController.ajaxindex()");
+		
+		//방명록 데이터 리스트 가져오지 않는다		
+		
+		return null; //"/guestbook/ajaxindex";
+		
+	}
 	
 	
 	
