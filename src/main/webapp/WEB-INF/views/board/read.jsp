@@ -72,7 +72,7 @@
 								<span class="form-text">작성일</span>
 								<span class="form-value">${boardVo.regDate}</span>
 							</div>
-							
+				 			
 							<!-- 제목 -->
 							<div class="form-group">
 								<span class="form-text">제 목</span>

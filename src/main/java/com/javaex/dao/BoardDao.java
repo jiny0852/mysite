@@ -29,7 +29,8 @@ public class BoardDao {
 		
 		System.out.println("boardDao.getRead()");
 		
-		BoardVo boardVo = sqlSession.selectOne("board.selectRead", no);
+		//BoardVo boardVo = sqlSession.selectOne("board.selectRead", no);
+		BoardVo boardVo = sqlSession.update("board.IncreaseHitCount", no);
 		
 		return boardVo;
 	}

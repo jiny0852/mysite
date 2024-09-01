@@ -51,19 +51,19 @@
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value" name="userName" value="${boardVo.userName}"></span>
+								<span class="form-value" name="userName" value="">${boardVo.userName}</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="form-group">
 								<span class="form-text">조회수</span>
-								<span class="form-value" name="" value="${boardVo.hit}"></span>
+								<span class="form-value" name="" value="">${boardVo.hit}</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="form-group">
 								<span class="form-text">작성일</span>
-								<span class="form-value" name="" value="${boardVo.regDate}"></span>
+								<span class="form-value" name="" value="">${boardVo.regDate}</span>
 							</div>
 							
 							<!-- 제목 -->
@@ -72,6 +72,8 @@
 								<input type="text" id="txt-title" name="title" value="${boardVo.title}">
 							</div>
 						
+							<!-- 글번호 -->
+							<input type="hidden" name="no" value="${boardVo.no}">
 							
 						
 							<!-- 내용 -->

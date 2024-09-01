@@ -68,7 +68,7 @@ public class BoardController {
 	
 	/* write */
 	@RequestMapping ( value="/board/write", method={RequestMethod.GET, RequestMethod.POST} )
-	public String write ( @ModelAttribute BoardVo boardVo, HttpSession session ) {
+	public String write ( @ModelAttribute BoardVo boardVo ) {  //, HttpSession session ) {
 		
 		System.out.println("boardController.write()");
 		
@@ -103,7 +103,9 @@ public class BoardController {
 		
 		BoardVo boardVo = boardService.exeGetReadOne(no);
 		
-		model.addAttribute("boardVo", boardVo);		
+		model.addAttribute("boardVo", boardVo);	
+		
+		System.out.println(boardVo);
 		
 		return "/board/modifyForm";
 	}
