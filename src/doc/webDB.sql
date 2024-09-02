@@ -255,6 +255,21 @@ and user_no = '1'
 ;
 
 
+ -- 조회수 증가
+DELIMITER //
+
+CREATE PROCEDURE increaseHitCount(IN postHit INT)
+BEGIN
+    UPDATE board
+    SET hit = hit + 1
+    WHERE no = postHit;
+END //
+
+DELIMITER ;
+
+CALL increaseHitCount(1);
+
+
 
 
 
@@ -302,6 +317,11 @@ delete from board
 where id = 'bbb'
 and password = 'bbb'
 ;
+
+
+
+
+
 
 
 

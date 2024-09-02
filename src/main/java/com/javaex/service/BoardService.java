@@ -31,7 +31,15 @@ public class BoardService {
 		
 		System.out.println("boardService.exeGetReadOne()");
 		
-		BoardVo boardVo = boardDao.getRead(no);
+		BoardVo boardVo;
+		
+		int result = boardDao.increaseHitCount(no);
+		
+		if (result == 1) {
+			boardVo = boardDao.getRead(no);
+		} else {
+			boardVo = null;
+		}
 		
 		
 		return boardVo;

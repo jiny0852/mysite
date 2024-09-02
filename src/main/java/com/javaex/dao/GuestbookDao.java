@@ -40,17 +40,46 @@ public class GuestbookDao {
 		}
 	}
 	
-	public GuestbookVo deleteGuestbook ( GuestbookVo guestbookVo ) {
+	public int deleteGuestbook ( GuestbookVo guestbookVo ) {
 		
 		System.out.println("guestbookDao.deleteGuestbook()");
 		
 		int count = sqlSession.delete("guestbook.delete", guestbookVo);
 		
+		return count;
+		
+	}
+	
+	public int insertSelectKey ( GuestbookVo guestbookVo ) {
+		
+		System.out.println("guestbookDao.insertSelectKey()");
+		
+		//System.out.println("guestbookVo before: " + guestbookVo);
+		
+		int count = sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
+		
+		//System.out.println("guestbookVo after: " + guestbookVo);
+		
+		
+		//GuestbookVo addGuestVo = sqlSession.selectOne("guestbook.selectGuestOne", guestbookVo.getNo());
+				
+		
+		
 		if (count == 1) {
-			return guestbookVo;
+			return guestbookVo.getNo();//addGuestVo;
 		} else {
-			return null;
+			return 0;
 		}
+	}
+	
+	
+	public GuestbookVo getGuestOne(int no) {
+		
+		System.out.println("guestbookDao.getGuestOne()");
+		
+		GuestbookVo guestbookVo = sqlSession.selectOne("guestbook.selectGuestOne", no);
+		
+		return guestbookVo;
 		
 	}
 	

@@ -35,13 +35,41 @@ public class GuestbookService {
 	}
 	
 	
-	public GuestbookVo exeDelete( GuestbookVo guestbookVo ) {
+	public int exeDelete( GuestbookVo guestbookVo ) {
 		
 		System.out.println("GuestbokService.exeDelete()");
 		
-		GuestbookVo deleteGuestbook = guestbookDao.deleteGuestbook(guestbookVo);
+		int count = guestbookDao.deleteGuestbook(guestbookVo);
 		
-		return deleteGuestbook;
+		return count;
+	}
+	
+	
+	public GuestbookVo exeAdd( GuestbookVo guestbookVo ) {
+		
+		System.out.println("GuestbokService.exeAdd()");
+		
+		//저장
+		//int num = guestbookDao.insertSelectKey(guestbookVo);
+		guestbookDao.insertSelectKey(guestbookVo);
+		
+		//1명 데이터 가져오기
+		//GuestbookVo addGuestbook = guestbookDao.getGuestOne(num);
+		GuestbookVo addGuestbook = guestbookDao.getGuestOne(guestbookVo.getNo());
+		
+		return addGuestbook;
+	}
+	
+	
+	public int exeRemove( GuestbookVo guestbookVo ) {
+		
+		System.out.println("GuestbokService.exeRemove()");
+		
+		int count = guestbookDao.deleteGuestbook(guestbookVo);
+		
+		
+		return count;
+		
 	}
 	
 	

@@ -30,7 +30,7 @@ public class BoardDao {
 		System.out.println("boardDao.getRead()");
 		
 		//BoardVo boardVo = sqlSession.selectOne("board.selectRead", no);
-		BoardVo boardVo = sqlSession.update("board.IncreaseHitCount", no);
+		BoardVo boardVo = sqlSession.selectOne("board.selectRead", no);
 		
 		return boardVo;
 	}
@@ -59,6 +59,20 @@ public class BoardDao {
 			return boardVo;
 		} else {
 			return null;
+		}
+		
+	}
+	
+	public int increaseHitCount ( int no ) {
+		
+		System.out.println("boardDao.increaseHitCount()");
+		
+		int result = sqlSession.update("board.increaseHitCount", no);	
+		
+		if (result == 1) {
+			return result;
+		} else {
+			return 0;
 		}
 		
 	}

@@ -1,4 +1,4 @@
-package com.javaex.controller;
+   package com.javaex.controller;
 
 import java.util.List;
 
@@ -37,16 +37,36 @@ public class ApiGuestbookController {
 	
 	
 	//방명록 등록
+	@ResponseBody
 	@RequestMapping ( value="/api/guestbook/write", method={RequestMethod.GET, RequestMethod.POST}  )
-	public String write ( @ModelAttribute GuestbookVo guestbookVo ) {
+	public GuestbookVo write ( @ModelAttribute GuestbookVo guestbookVo ) {
 		
 		System.out.println("ApiGuestbookController.write()");
 		
-		System.out.println(guestbookVo);
+		//가져오기
+		GuestbookVo postGuestVo = guestbookService.exeAdd(guestbookVo);
+		
+		System.out.println("postGuestVo: " + postGuestVo);
 		
 		
-		return "";
+		return postGuestVo;
 	}
+	
+	
+	//방명록 삭제
+	@ResponseBody
+	@RequestMapping ( value="/api/guestbook/remove", method={RequestMethod.GET, RequestMethod.POST}  )
+	public int remove ( @ModelAttribute GuestbookVo guestbookVo ) {
+		
+		System.out.println("ApiGuestbookController.remove()");
+		
+		int count = guestbookService.exeRemove(guestbookVo);
+		
+		
+		return count;
+		
+	}
+	
 	
 	
 	
