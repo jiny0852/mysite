@@ -15,8 +15,6 @@ public class GuestbookDao {
 	private SqlSession sqlSession;
 	
 	
-	
-	
 	public List<GuestbookVo> getGuestbookList() {
 		
 		System.out.println("guestbookDao.getGuestbookList()");
@@ -63,15 +61,15 @@ public class GuestbookDao {
 		
 		//GuestbookVo addGuestVo = sqlSession.selectOne("guestbook.selectGuestOne", guestbookVo.getNo());
 				
+		return count;
 		
-		
-		if (count == 1) {
+/*		if (count == 1) {
 			return guestbookVo.getNo();//addGuestVo;
 		} else {
 			return 0;
 		}
-	}
-	
+	}*/
+	}	
 	
 	public GuestbookVo getGuestOne(int no) {
 		

@@ -322,7 +322,81 @@ and password = 'bbb'
 
 
 
+select * from users;
 
+select  no,
+		id,
+		password,
+        name,
+        gender
+from users
+;
+
+select 	count(*)
+from users
+where id = 'aaa';
+
+
+
+
+
+
+
+
+#######################################################
+#################### gallery_db 데이터 ##################
+
+use web_db;
+
+drop table gallery;
+
+create table gallery (
+	no  	 	 integer 		  primary key     auto_increment,
+    user_no 	 integer,          
+    content		 varchar(1000),	 
+    filePath	 varchar(500),	
+    orgName		 varchar(200),	
+    saveName	 varchar(500),	
+    fileSize	 integer,	 
+    
+	constraint gallery_fk foreign key (user_no) 
+    references Users(no)
+);
+
+select * from gallery;
+
+select  no,
+		user_no,
+        content,
+        filePath,
+        orgName,
+        saveName,
+        fileSize
+from gallery;
+
+
+
+
+-- 등록 ################
+insert into gallery
+values( null, '1', '111', null, now(), 1 )
+;
+
+
+-- 수정#######
+update guestbook
+set password = '666',
+	name = '채봉구',
+	gender = 'female'
+where id = 'ccc'
+;
+
+
+-- 삭제 ###############
+delete from board
+where id = 'bbb'
+and password = 'bbb'
+;
 
 
 

@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 <link href="/mysite/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite/assets/css/user.css" rel="stylesheet" type="text/css">
+<!-- 서버  통신 연결용 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -52,8 +54,9 @@
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<button type="button" id="btnIdCheck">중복체크</button>
 							</div>
+							<div id="message"></div>
 	
 							<!-- 비밀번호 -->
 							<div class="form-group">
@@ -107,6 +110,102 @@
 
 	</div>
 	<!-- //wrap -->
+	
+	
+	
+	
+	<script>
+	
+	//화면 로딩 될때 돔트리 완료되었을떄 이벤트 등록	
+	document.addEventListener('DOMContentLoaded', function () {
+		
+		console.log('드개좌~');
+		
+		let btnIdCheck = document.querySelector('#btnIdCheck');
+		console.log(btnIdCheck);
+		
+		btnIdCheck.addEventListener( 'click', function () {
+			
+			console.log('클릭');
+			
+			//데이터 수집
+			//<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+			let txtIdTag = document.querySelector('#input-uid');
+			//console.log(txtIdTag.value);
+			let id = txtIdTag.value;
+			
+			/*
+			let userVo = {
+					id: id
+			};*/
+			
+			
+			
+			//요청 통신
+			axios({
+
+				method: 'get', // put, post, delete
+				url: '${pageContext.request.contextPath}/api/user/idcheck',
+				headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+				params: { id: id }, //get방식 파라미터로 값이 전달
+				//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+
+				responseType: 'json' //수신타입
+
+			}).then(function (response) {
+
+				//console.log(response); //수신데이타 전체 데이터
+				console.log(response.data); //내가 보낸 데이터
+				
+				let can = response.data;
+				let messageTag = document.querySelector('#message');
+				
+				//그리기
+				
+				if ( can == true ) {
+					messageTag.txtContent = '사용할 수 있는 아이디입니다.';
+					messageTag.style.color= '#0000ff';
+				} else {
+					messageTag.txtContent = '이미 사용중인 아이디입니다.';
+					messageTag.style.color= '#ff0000';
+				}
+				
+				
+				
+				
+				
+				
+				
+
+			}).catch(function (error) {
+
+				console.log(error);
+
+			});
+			
+			
+				//화면 그리기
+				
+				
+			
+			//
+			
+			
+		} );
+		
+		
+		
+		
+		
+		
+	});
+	
+	
+	</script>
+	
+	
+	
+	
 
 </body>
 

@@ -76,12 +76,16 @@ public class GuestbookController {
 		
 		System.out.println("guestbookController.delete()");
 		
-		GuestbookVo deleteGuestbookVo = guestbookService.exeDelete(guestbookVo);
-		
+		//GuestbookVo deleteGuestbookVo = guestbookService.exeDelete(guestbookVo);
+		int count = guestbookService.exeDelete(guestbookVo);
 		//System.out.println(deleteGuestbookVo);
 
+		if ( count == 1 ) {
+			return "redirect:/guestbook/list";
+		} else {
+			return null;
+		}
 		
-		return "redirect:/guestbook/list";
 	} 
 	
 	

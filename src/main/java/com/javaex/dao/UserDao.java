@@ -69,6 +69,21 @@ public class UserDao {
 	
 	
 	
+	//id로 데이터 가져오기 - id 사용여부 체크할떄 사용
+	public int selectUserById ( String id ) {
+		
+		System.out.println("UserDao.selectUserById()");
+		//System.out.println(id);
+		
+		int count = sqlSession.selectOne("user.selectById", id);
+		//System.out.println(count);
+		
+		
+		return count;
+	}
+	
+	
+	
 	
 	
 	

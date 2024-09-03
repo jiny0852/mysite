@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -128,6 +130,21 @@ public class UserController {
 		
 		
 		return "redirect:/main";
+	}
+	
+	
+	/* 아이디 체크 */
+	@ResponseBody
+	@RequestMapping ( value="/api/user/idcheck", method={RequestMethod.GET, RequestMethod.POST}  )
+	public boolean idcheck ( @RequestParam(value="id") String id ) {
+		
+		System.out.println("userApiController.idcheck()");
+		System.out.println(id);
+		
+		boolean can = userService.exeIdCheck(id);
+		
+		return can;
+		
 	}
 	
 	

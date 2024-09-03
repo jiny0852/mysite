@@ -12,7 +12,7 @@
 	
 		<![CDATA[
 
-			insert into Users
+			insert into users
 			values ( null, #{id}, #{password}, #{name}, #{gender} )
 
 		]]>
@@ -70,6 +70,23 @@
 		]]>
 
 	</update>
+	
+	
+	
+	
+	
+	<!-- 정보(회원) 조회 selectById -->
+	<select id="selectById" parameterType="string" resultType="int">
+
+		<![CDATA[
+
+			select 	count(*)
+			from users
+			where id = #{id}
+
+		]]>
+
+	</select>
 
 
 

@@ -59,6 +59,33 @@ public class UserService {
 		
 	}
 	
+	/* 아이디 체크 */
+	public boolean exeIdCheck ( String id ) {
+		
+		System.out.println("UserService.exeIdCheck()");
+		
+		int count = userDao.selectUserById(id);
+		
+		
+		if ( count >= 1 ) {
+			return false;
+		} else {
+			return true;
+		}
+		
+		/*
+		boolean result;
+		
+		if ( count >= 1 ) {
+			result = false;
+		} else { //if ( count == 0 ) {
+			result = true;
+		}
+		
+		return result;
+		*/
+	}
+	
 	
 
 }
